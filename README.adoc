@@ -1,0 +1,8 @@
+= Final project for Bs in Information Systems at UMC
+
+Stack:
+
+- JavaEE with JSF 2, RichFaces and JPA/Hibernate
+- PostgreSQL
+
+Obs: The steps for running will be shortly added
