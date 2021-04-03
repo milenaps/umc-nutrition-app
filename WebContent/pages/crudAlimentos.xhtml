@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tCrud.xhtml">
+	<ui:define name="title"> :: Alimentos</ui:define>
+	<ui:define name="content">
+		<p class="tit">Alimentos</p>
+		<form jsfc="h:form" id="frmCadAlimentos">
+			<h:panelGrid columns="2">
+				<label for="nome">Nome:</label>
+				<input type="text" jsfc="h:inputText" value="#{alimentoBean.alimento.nome}" />
+				<h:panelGroup>
+					<label for="grupo">Grupo:</label>
+					<input type="hidden" id="grupo" jsfc="h:inputHidden" value="#{categoriaBean.idGrupo}" />
+				</h:panelGroup>
+				<h:panelGroup>
+					<select jsfc="h:selectOneMenu" id="cmbGrupo" valueChangeListener="#{alimentoBean.carregarCategorias}"
+							onchange="getSelectedCombo(frmCadAlimentos, cmbGrupo, grupo); submit();" binding="#{alimentoBean.grupoBinding}">
+						<f:convertNumber />
+				  		<option jsfc="f:selectItem" itemLabel="--- Selecione ---" itemValue="" />
+				  		<f:selectItems value="#{grupoAlimentarBean.allGrupos}" />
+				 	</select>
+				 	<a href="crudGrupos.jsf">+</a>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{categoriaBean.categorias != null}">
+					<label for="categoria">Categoria:</label>
+					<input type="hidden" id="categoria" jsfc="h:inputHidden" value="#{alimentoBean.idCateg}" />
+				</h:panelGroup>
+				<h:panelGroup rendered="#{categoriaBean.categorias != null}">
+					<select jsfc="h:selectOneMenu" id="cmbCategoria" onchange="getSelectedCombo(frmCadAlimentos, cmbCategoria, categoria); submit();">
+				  		<f:convertNumber />
+				  		<option jsfc="f:selectItem" itemLabel="--- Selecione ---" itemValue="" />
+				  		<f:selectItems value="#{categoriaBean.categorias}" />
+				 	</select>
+				 	<a href="crudCategorias.jsf">+</a>
+				</h:panelGroup>
+				<h:panelGroup>
+					<label for="medida">Medida:</label>
+					<input type="hidden" id="medida" jsfc="h:inputHidden" value="#{alimentoBean.idMedida}" />
+				</h:panelGroup>
+				<select jsfc="h:selectOneMenu" id="cmbMedida" onchange="getSelectedCombo(frmCadAlimentos, cmbMedida, medida)">
+			  		<f:convertNumber />
+			  		<option jsfc="f:selectItem" itemLabel="--- Selecione ---" itemValue="" />
+			  		<f:selectItems value="#{alimentoBean.allMedidas}" />
+			 	</select>
+			</h:panelGrid>
+			<p><input type="submit" jsfc="h:commandButton" value="Salvar" action="#{alimentoBean.save}" /></p>
+		</form>
+	</ui:define>
+</ui:composition>

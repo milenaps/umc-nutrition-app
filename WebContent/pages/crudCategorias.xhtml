@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tCrud.xhtml">
+	<ui:define name="title"> :: Categorias</ui:define>
+	<ui:define name="content">
+		<form jsfc="h:form" id="formCateg">
+			<p class="tit">Categorias</p>
+			<h:panelGrid columns="2">
+				<label for="nome">Nome:</label>
+				<h:panelGroup>
+					<input type="text" jsfc="h:inputText" value="#{categoriaBean.categoria.nome}" />
+					<input type="hidden" id="grupo" jsfc="h:inputHidden" value="#{categoriaBean.idGrupo}" />
+				</h:panelGroup>
+				<label for="grupo">Grupo:</label>
+				<input type="text" jsfc="h:inputText" value="#{categoriaBean.idGrupo}" size="5"/>
+				<!--<p>Grupo:
+					<h:panelGroup>
+						<select jsfc="h:selectOneMenu" id="cmbGrupo" onchange="getSelectedCombo('formCateg', 'cmbGrupo', 'grupo')">
+							<f:convertNumber />
+					  		<option jsfc="f:selectItem" itemLabel=" Selecione " itemValue="" />
+					  		<f:selectItems value="#{grupoAlimentarBean.allGrupos}" />
+					 	</select>
+					 	<a href="crudGrupos.jsf">+</a>
+					 </h:panelGroup>
+				</p>-->
+			</h:panelGrid>
+			<input type="submit" jsfc="h:commandButton" value="Salvar" actionListener="#{categoriaBean.save}" />
+		</form><hr /><br />
+		<form jsfc="h:form" id="manutCateg">
+			<h:dataTable var="c" value="#{categoriaBean.all}" cellspacing="3">
+				<h:column><h:outputText value="#{c.nome}" /></h:column>
+				<h:column><h:outputText value="#{c.grupoAlimentar.nome}" /></h:column>
+				<h:column><input type="submit" jsfc="h:commandButton" value="Alterar" actionListener="#{categoriaBean.update}" idCategoria="#{c.id}" /></h:column>
+				<h:column><input type="submit" jsfc="h:commandButton" value="Excluir" actionListener="#{categoriaBean.delete}" idCategoria="#{c.id}" /></h:column>
+			</h:dataTable>
+		</form>
+	</ui:define>
+</ui:composition>

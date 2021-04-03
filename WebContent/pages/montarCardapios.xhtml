@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tGeral.xhtml">
+	<ui:define name="title"> :: Cardápios</ui:define>
+	<ui:define name="content">
+		<p class="tit">Cardápios</p>
+		<form jsfc="h:form" id="novoCardapio">
+			<p>Realize uma busca na base de alimentos para montar o seu cardápio personalizado!</p><br />
+			<h:dataTable var="i" value="#{cardapioBean.cardapio.itens}" height="200px" width="500px" rendered="#{!cardapioBean.listaVazia}">
+				<h:column>
+					<f:facet name="header"><h:outputText value="Nome" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{i.alimento.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><h:outputText value="Medida" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{i.alimento.medida.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><h:outputText value="Qtde" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{i.quantidade}" />
+				</h:column>
+				<h:column>
+					<input type="button" jsfc="h:commandButton" value="Alterar" item="#{i}" />
+				</h:column>
+				<h:column>
+					<input type="button" jsfc="h:commandButton" value="Excluir" item="#{i}" />
+				</h:column>
+			</h:dataTable><br />
+			
+			<p><input type="submit" jsfc="h:commandButton" value="Montar" actionListener="#{cardapioBean.save}" rendered="#{!cardapioBean.listaVazia}" /></p>
+		</form>
+	</ui:define>
+</ui:composition>

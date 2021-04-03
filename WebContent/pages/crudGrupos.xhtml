@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tCrud.xhtml">
+	<ui:define name="title"> :: Grupos alimentares</ui:define>
+	<ui:define name="content">
+		<p class="tit">Grupos alimentares</p>
+		<form jsfc="h:form" id="novoGrupo">
+			<p>
+				Nome: <input type="text" jsfc="h:inputText" value="#{grupoAlimentarBean.grupoAlimentar.nome}" id="nome" required="true" />
+				<input type="submit" jsfc="h:commandButton" value="Salvar" actionListener="#{grupoAlimentarBean.save}" />
+			</p>
+		</form><hr />
+		<form jsfc="h:form" id="manutGrupo">
+			<h:dataTable var="g" value="#{grupoAlimentarBean.all}" rows="10">
+				<h:column><h:outputText value="#{g.nome}" /></h:column>
+				<h:column><input type="submit" jsfc="h:commandButton" value="Alterar" actionListener="#{grupoAlimentarBean.update}" idGrupo="#{g.id}"/></h:column>
+				<h:column><input type="submit" jsfc="h:commandButton" value="Excluir" actionListener="#{grupoAlimentarBean.delete}" idGrupo="#{g.id}"/></h:column>
+			</h:dataTable>
+		</form>
+	</ui:define>
+</ui:composition>

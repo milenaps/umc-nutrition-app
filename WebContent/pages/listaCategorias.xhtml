@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:r="http://richfaces.org/rich"
+	template="tGeral.xhtml">
+	<ui:define name="content">
+		<p class="tit">Categorias x Grupo</p>
+		<p>Clique em uma categoria para exibir a relação de alimentos</p>
+		<form jsfc="h:form" id="filtrarAlimentosPorCateg">
+			<r:dataTable var="c" value="#{categoriaBean.categorias}">
+				<r:column>
+					<h:outputText value="» " />
+					<a jsfc="h:commandLink" value="#{c.nome}" action="#{alimentoBean.pesqPorCateg}">
+						<f:param name="idCateg" value="#{c.id}"/>
+					</a>
+				</r:column>
+			</r:dataTable>
+		</form>
+	</ui:define>
+</ui:composition>

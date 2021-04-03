@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<p class="subtit">Consulta de alimentos</p>
+	<form jsfc="h:form" id="filtrarAlimentosPorNome">
+		<p>Nome: <input type="text" jsfc="h:inputText" value="#{alimentoBean.nomeAlimento}" /><input type="button" jsfc="h:commandButton" value="Filtrar" action="#{alimentoBean.pesqPorFiltro}" /></p>
+	</form>
+	<form jsfc="h:form" id="consCategorias">
+		<p>
+			<h:dataTable var="g" value="#{grupoAlimentarBean.all}" style="text-align:left;">
+				<h:column>
+					<h:outputText value="» " />
+					<a jsfc="h:commandLink" value="#{g.nome}" action="#{categoriaBean.pesqPorGrupo}">
+						<f:param name="idGrupo" value="#{g.id}"/>
+					</a>
+				</h:column>
+			</h:dataTable>
+		</p>
+	</form>
+</ui:composition>

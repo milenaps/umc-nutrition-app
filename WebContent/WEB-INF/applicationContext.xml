@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+              http://www.springframework.org/schema/beans/spring-beans.xsd 
+              http://www.springframework.org/schema/aop  
+              http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<!-- ### Definicao do SGBD ### -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>org.postgresql.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:postgresql://localhost:5432/nutri</value>
+		</property>
+		<property name="username">
+			<value>postgres</value>
+		</property>
+		<property name="password">
+			<value>aula</value>
+		</property>
+	</bean>
+	
+	<!-- ### Persistencia de dados ### -->
+	<!-- bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/nutri/resources/hbm/Administrador.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Alimento.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Atividade.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Cardapio.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Categoria.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Composicao.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Endereco.hbm.xml</value>
+				<value>com/nutri/resources/hbm/FrequenciaAtividade.hbm.xml</value>
+				<value>com/nutri/resources/hbm/GrupoAlimentar.hbm.xml</value>
+				<value>com/nutri/resources/hbm/HistoricoAlimentar.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Login.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Medida.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Nutricionista.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Nutriente.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Paciente.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Patologia.hbm.xml</value>
+				<value>com/nutri/resources/hbm/PerfilAcesso.hbm.xml</value>
+				<value>com/nutri/resources/hbm/PerfilPaciente.hbm.xml</value>
+				<value>com/nutri/resources/hbm/ResultadoAnalise.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Telefone.hbm.xml</value>
+				<value>com/nutri/resources/hbm/Usuario.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean-->
+	
+	<!-- ### Gerencia de transacoes ### -->
+	<!-- bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean-->
+	
+	<!-- ### Mapeamento de objetos ### -->
+	<bean id="administrador" class="com.nutri.java.model.Administrador" />
+	<bean id="alimento" class="com.nutri.java.model.Alimento">
+		<property name="medida" ref="medida" />
+		<property name="categoria" ref="categoria" />
+	</bean>
+	<bean id="frequenciaAtividade" class="com.nutri.java.model.FrequenciaAtividade" />
+	<bean id="atividade" class="com.nutri.java.model.Atividade">
+		<property name="frequencia" ref="frequenciaAtividade" />
+	</bean>
+	<bean id="cardapio" class="com.nutri.java.model.Cardapio">
+		<property name="paciente" ref="paciente" />
+		<property name="nutricionista" ref="nutricionista" />
+	</bean>
+	<bean id="itemCardapio" class="com.nutri.java.model.ItemCardapio">
+		<property name="alimento" ref="alimento" />
+	</bean>
+	<bean id="grupoAlimentar" class="com.nutri.java.model.GrupoAlimentar" />
+	<bean id="categoria" class="com.nutri.java.model.Categoria">
+		<property name="grupoAlimentar" ref="grupoAlimentar" />
+	</bean>
+	<bean id="endereco" class="com.nutri.java.model.Endereco" />
+	<bean id="historicoAlimentar" class="com.nutri.java.model.HistoricoAlimentar">
+		<property name="alimento" ref="alimento" />
+	</bean>
+	<bean id="login" class="com.nutri.java.model.Login" />
+	<bean id="medida" class="com.nutri.java.model.Medida" />
+	<bean id="nutricionista" class="com.nutri.java.model.Nutricionista" />
+	<bean id="nutriente" class="com.nutri.java.model.Nutriente" />
+	<bean id="perfilPaciente" class="com.nutri.java.model.PerfilPaciente" />
+	<bean id="paciente" class="com.nutri.java.model.Paciente">
+		<property name="nutricionista" ref="nutricionista" />
+		<property name="perfil" ref="perfilPaciente" />
+	</bean>
+	<bean id="patologia" class="com.nutri.java.model.Patologia" />
+	<bean id="perfilAcesso" class="com.nutri.java.model.PerfilAcesso" />
+	<bean id="resultadoAnalise" class="com.nutri.java.model.ResultadoAnalise">
+		<property name="paciente" ref="paciente" />
+	</bean>
+	<bean id="telefone" class="com.nutri.java.model.Telefone" />
+	<bean id="usuario" class="com.nutri.java.model.Usuario">
+		<property name="login" ref="login" />
+	</bean>
+	<bean id="avaliacao" class="com.nutri.java.model.Avaliacao">
+		<property name="resultadoAnalise" ref="resultadoAnalise" />
+	</bean>
+	<bean id="exception" class="com.nutri.java.model.Exception"/>
+	
+	<!-- ### Mapeamento de DAOs ### -->
+	<bean id="perfilAcessoDAO" class="com.nutri.java.dao.impl.PerfilAcessoDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="loginDAO" class="com.nutri.java.dao.impl.LoginDAOImpl">
+		<property name="perfilAcessoDAO" ref="perfilAcessoDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="administradorDAO" class="com.nutri.java.dao.impl.AdministradorDAOImpl">
+		<property name="loginDAO" ref="loginDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="grupoAlimentarDAO" class="com.nutri.java.dao.impl.GrupoAlimentarDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="categoriaDAO" class="com.nutri.java.dao.impl.CategoriaDAOImpl">
+		<property name="grupoAlimentarDAO" ref="grupoAlimentarDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="cardapioDAO" class="com.nutri.java.dao.impl.CardapioDAOImpl">
+		<property name="alimentoDAO" ref="alimentoDAO" />
+		<property name="nutricionistaDAO" ref="nutricionistaDAO" />
+		<property name="pacienteDAO" ref="pacienteDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="medidaDAO" class="com.nutri.java.dao.impl.MedidaDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="alimentoDAO" class="com.nutri.java.dao.impl.AlimentoDAOImpl">
+		<property name="categoriaDAO" ref="categoriaDAO" />
+		<property name="medidaDAO" ref="medidaDAO" />
+		<property name="nutrienteDAO" ref="nutrienteDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="atividadeDAO" class="com.nutri.java.dao.impl.AtividadeDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="frequenciaAtividadeDAO" class="com.nutri.java.dao.impl.FrequenciaAtividadeDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="historicoAlimentarDAO" class="com.nutri.java.dao.impl.HistoricoAlimentarDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="nutricionistaDAO" class="com.nutri.java.dao.impl.NutricionistaDAOImpl">
+		<property name="loginDAO" ref="loginDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="nutrienteDAO" class="com.nutri.java.dao.impl.NutrienteDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="pacienteDAO" class="com.nutri.java.dao.impl.PacienteDAOImpl">
+		<property name="alimentoDAO" ref="alimentoDAO" />
+		<property name="loginDAO" ref="loginDAO" />
+		<property name="frequenciaAtividadeDAO" ref="frequenciaAtividadeDAO" />
+		<property name="nutricionistaDAO" ref="nutricionistaDAO" />
+		<property name="perfilPacienteDAO" ref="perfilPacienteDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="patologiaDAO" class="com.nutri.java.dao.impl.PatologiaDAOImpl">
+		<property name="grupoAlimentarDAO" ref="grupoAlimentarDAO" />
+		<property name="categoriaDAO" ref="categoriaDAO" />
+		<property name="medidaDAO" ref="medidaDAO" />
+		<property name="nutrienteDAO" ref="nutrienteDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="perfilPacienteDAO" class="com.nutri.java.dao.impl.PerfilPacienteDAOImpl">
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="resultadoAnaliseDAO" class="com.nutri.java.dao.impl.ResultadoAnaliseDAOImpl">
+		<property name="pacienteDAO" ref="pacienteDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	<bean id="usuarioDAO" class="com.nutri.java.dao.impl.UsuarioDAOImpl">
+		<property name="loginDAO" ref="loginDAO" />
+		<!-- property name="sessionFactory" ref="sessionFactory" / -->
+	</bean>
+	
+	<!-- ### Mapeamento de servicos ### -->
+	<bean id="administradorService" class="com.nutri.java.services.impl.AdministradorServiceImpl">
+		<property name="administradorDAO" ref="administradorDAO" />
+	</bean>
+	<bean id="alimentoService" class="com.nutri.java.services.impl.AlimentoServiceImpl">
+		<property name="alimentoDAO" ref="alimentoDAO" />
+	</bean>
+	<bean id="atividadeService" class="com.nutri.java.services.impl.AtividadeServiceImpl">
+		<property name="atividadeDAO" ref="atividadeDAO" />
+	</bean>
+	<bean id="cardapioService" class="com.nutri.java.services.impl.CardapioServiceImpl">
+		<property name="cardapioDAO" ref="cardapioDAO" />
+	</bean>
+	<bean id="categoriaService" class="com.nutri.java.services.impl.CategoriaServiceImpl">
+		<property name="categoriaDAO" ref="categoriaDAO" />
+	</bean>
+	<bean id="frequenciaAtividadeService"
+		class="com.nutri.java.services.impl.FrequenciaAtividadeServiceImpl">
+		<property name="frequenciaAtividadeDAO" ref="frequenciaAtividadeDAO" />
+	</bean>
+	<bean id="grupoAlimentarService" class="com.nutri.java.services.impl.GrupoAlimentarServiceImpl">
+		<property name="grupoAlimentarDAO" ref="grupoAlimentarDAO" />
+	</bean>
+	<bean id="historicoAlimentarService"
+		class="com.nutri.java.services.impl.HistoricoAlimentarServiceImpl">
+		<property name="historicoAlimentarDAO" ref="historicoAlimentarDAO" />
+	</bean>
+	<bean id="medidaService" class="com.nutri.java.services.impl.MedidaServiceImpl">
+		<property name="medidaDAO" ref="medidaDAO" />
+	</bean>
+	<bean id="nutricionistaService" class="com.nutri.java.services.impl.NutricionistaServiceImpl">
+		<property name="nutricionistaDAO" ref="nutricionistaDAO" />
+	</bean>
+	<bean id="nutrienteService" class="com.nutri.java.services.impl.NutrienteServiceImpl">
+		<property name="nutrienteDAO" ref="nutrienteDAO" />
+	</bean>
+	<bean id="pacienteService" class="com.nutri.java.services.impl.PacienteServiceImpl">
+		<property name="pacienteDAO" ref="pacienteDAO" />
+	</bean>
+	<bean id="patologiaService" class="com.nutri.java.services.impl.PatologiaServiceImpl">
+		<property name="patologiaDAO" ref="patologiaDAO" />
+	</bean>
+	<bean id="resultadoAnaliseService" class="com.nutri.java.services.impl.ResultadoAnaliseServiceImpl">
+		<property name="resultadoAnaliseDAO" ref="resultadoAnaliseDAO" />
+	</bean>
+	<bean id="usuarioService" class="com.nutri.java.services.impl.UsuarioServiceImpl">
+		<property name="usuarioDAO" ref="usuarioDAO" />
+	</bean>
+	
+	<!-- ### Mapeamento de beans ### -->
+	<bean id="administradorBean" class="com.nutri.java.view.bean.AdministradorBean" scope="session">
+		<property name="administrador" ref="administrador" />
+		<property name="administradorService" ref="administradorService" />
+	</bean>
+	<bean id="alimentoBean" class="com.nutri.java.view.bean.AlimentoBean" scope="session">
+		<property name="alimento" ref="alimento" />
+		<property name="alimentoService" ref="alimentoService" />
+		<property name="medidaService" ref="medidaService" />
+	</bean>
+	<bean id="atividadeBean" class="com.nutri.java.view.bean.AtividadeBean" scope="request">
+		<property name="atividade" ref="atividade" />
+		<property name="atividadeService" ref="atividadeService" />
+		<property name="frequenciaAtividadeService" ref="frequenciaAtividadeService" />
+	</bean>
+	<bean id="avaliacaoBean" class="com.nutri.java.view.bean.AvaliacaoBean" scope="session">
+		<property name="avaliacao" ref="avaliacao" />
+		<property name="resultadoAnaliseService" ref="resultadoAnaliseService" />
+		<property name="pacienteBean" ref="pacienteBean" />
+		<property name="grupoAlimentarBean" ref="grupoAlimentarBean" />
+	</bean>
+	<bean id="cardapioBean" class="com.nutri.java.view.bean.CardapioBean" scope="session">
+		<property name="avaliacao" ref="avaliacao" />
+		<property name="cardapio" ref="cardapio" />
+		<property name="itemCardapio" ref="itemCardapio" />
+		<property name="cardapioService" ref="cardapioService" />
+		<property name="pacienteBean" ref="pacienteBean" />
+		<property name="nutricionistaBean" ref="nutricionistaBean" />
+		<property name="grupoAlimentarBean" ref="grupoAlimentarBean" />
+	</bean>
+	<bean id="categoriaBean" class="com.nutri.java.view.bean.CategoriaBean" scope="session">
+		<property name="categoria" ref="categoria" />
+		<property name="categoriaService" ref="categoriaService" />
+	</bean>
+	<bean id="grupoAlimentarBean" class="com.nutri.java.view.bean.GrupoAlimentarBean" scope="session">
+		<property name="grupoAlimentar" ref="grupoAlimentar" />
+		<property name="grupoAlimentarService" ref="grupoAlimentarService" />
+	</bean>
+	<bean id="historicoAlimentarBean" class="com.nutri.java.view.bean.HistoricoAlimentarBean" scope="session">
+		<property name="historicoAlimentar" ref="historicoAlimentar" />
+		<property name="historicoAlimentarService" ref="historicoAlimentarService" />
+	</bean>
+	<bean id="nutricionistaBean" class="com.nutri.java.view.bean.NutricionistaBean" scope="session">
+		<property name="nutricionista" ref="nutricionista" />
+		<property name="nutricionistaService" ref="nutricionistaService" />
+	</bean>
+	<bean id="nutrienteBean" class="com.nutri.java.view.bean.NutrienteBean" scope="request">
+		<property name="nutriente" ref="nutriente" />
+		<property name="nutrienteService" ref="nutrienteService" />
+	</bean>
+	<bean id="pacienteBean" class="com.nutri.java.view.bean.PacienteBean" scope="session">
+		<property name="paciente" ref="paciente" />
+		<property name="pacienteService" ref="pacienteService" />
+	</bean>
+	<bean id="patologiaBean" class="com.nutri.java.view.bean.PatologiaBean" scope="request">
+		<property name="patologia" ref="patologia" />
+		<property name="patologiaService" ref="patologiaService" />
+	</bean>
+	<bean id="usuarioBean" class="com.nutri.java.view.bean.UsuarioBean" scope="request">
+		<property name="usuario" ref="usuario" />
+		<property name="usuarioService" ref="usuarioService" />
+	</bean>
+	<bean id="exceptionBean" class="com.nutri.java.view.bean.ExceptionBean" scope="request">
+		<property name="exception" ref="exception" />
+	</bean>
+</beans>

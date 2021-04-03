@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:r="http://richfaces.org/rich"
+	template="tGeral.xhtml">
+	<ui:define name="content">
+		<p class="tit">NutriBem</p><hr />
+		<h:panelGroup rendered="#{usuarioBean.roles[2]}">
+			<div style="float:right">
+				<p><b>Avaliação nutricional</b></p>
+				<form id="analisarAlimentacao" jsfc="h:form">
+					De: <r:calendar id="dataIni" inputSize="7" datePattern="dd/MM/yyyy" firstWeekDay="0" weekDayLabelsShort="D,S,T,Q,Q,S,S" showWeeksBar="false" showFooter="false" value="#{avaliacaoBean.historicoDe}" required="true" />
+					Para: <r:calendar id="dataFim" inputSize="7" datePattern="dd/MM/yyyy" firstWeekDay="0" weekDayLabelsShort="D,S,T,Q,Q,S,S" showWeeksBar="false" showFooter="false" value="#{avaliacaoBean.historicoAte}" required="true" />
+					<input type="button" jsfc="h:commandButton" value="Analisar" action="#{avaliacaoBean.analisarAlimentacao}" />
+				</form>
+			</div>
+		</h:panelGroup><hr /><br /><br /><br />
+		<h:panelGroup rendered="#{usuarioBean.roles[2] and avaliacaoBean.avaliacao.resultadoAnalise != null and pacienteBean.paciente.id == avaliacaoBean.avaliacao.resultadoAnalise.paciente.id and avaliacaoBean.avaliacao.resultadoAnalise.informativo != null}">
+			<br /><br />
+			<p><h:outputText value="Última avaliação realizada:" style="font-weight: bold;" rendered="#{avaliacaoBean.avaliacao.resultadoAnalise != null}"/></p>
+			<p>
+				<h:outputText value="#{avaliacaoBean.avaliacao.resultadoAnalise.dataInicial} "/> a <h:outputText value=" #{avaliacaoBean.avaliacao.resultadoAnalise.dataFinal}"/><br />
+				<h:outputText value="#{avaliacaoBean.avaliacao.resultadoAnalise.informativo}"/>
+			</p>
+			<p><b>A sua alimentação foi classificada como:</b> <h:outputText value="#{avaliacaoBean.posicaoRanking}"/></p>
+		</h:panelGroup><br /><br /><br />
+		<h:panelGroup rendered="#{usuarioBean.roles[2] and avaliacaoBean.resultadosDeAnalise != null and !avaliacaoBean.noResultsAvailable}">
+			<form jsfc="h:form" id="verResultados">
+				<a href="#" jsfc="h:commandLink" value="» Ver a relação de resultados de avaliações feitas por você" action="#{avaliacaoBean.listarResultados}"/><br />
+			</form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

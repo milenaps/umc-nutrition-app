@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.nutri.java.model.Login" table="login">
+		<id name="id" column="id" unsaved-value="0">
+			<generator class="increment" />
+		</id>
+		<property name="login" column="login" not-null="true" unique="true"/>
+		<property name="senha" column="senha" not-null="true"/>
+		<bag name="perfis" table="login_perfilacesso">
+			<key column="login" not-null="true" />
+			<many-to-many column="role" class="com.nutri.java.model.PerfilAcesso" />
+		</bag>
+	</class>
+</hibernate-mapping>

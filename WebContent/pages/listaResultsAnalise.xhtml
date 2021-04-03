@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tGeral.xhtml">
+	<ui:define name="title"> :: Resultados de análises de alimentação</ui:define>
+	<ui:define name="content">
+		<p class="tit">Lista de resultados de análises de alimentação</p>
+		<h:outputText rendered="#{avaliacaoBean.noResultsAvailable}" value="Não há registros"/>
+		<form jsfc="h:form" id="listaResults" rendered="#{!avaliacaoBean.noResultsAvailable}">
+			<h:dataTable var="r" value="#{avaliacaoBean.resultadosDeAnalise}">
+				<h:column>
+					<f:facet name="header">Data inicial</f:facet>
+					<span jsfc="h:outputText" value="#{r.dataInicial}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Data final</f:facet>
+					<span jsfc="h:outputText" value="#{r.dataFinal}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ranking</f:facet>
+					<input type="text" jsfc="h:inputText" value="#{r.posicaoRanking}" />
+				</h:column>
+				<h:column>
+					<h:outputText value="» " />
+					<a href="#" jsfc="h:commandLink" value="Detalhar" action="#{avaliacaoBean.detalharResultado}">
+						<f:param name="idResultado" value="#{r.id}" />
+					</a>
+				</h:column>
+			</h:dataTable>
+		</form>
+	</ui:define>
+</ui:composition>

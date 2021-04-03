@@ -1,0 +1,139 @@
+/* --- GENERAL --- */
+
+body {
+	background-color: #f3f2e7;
+}
+
+hr {
+	border-color: transparent;
+	padding: 0;
+	margin: 0;
+}
+
+#escope, #header, #footer {
+	width: 898px;
+}
+
+#escope {
+	background-image: url(images/escope.jpg);
+}
+
+/* --- FONTS --- */
+
+p {
+	font-family: verdana;
+	font-size: 11px;
+}
+
+.main, .tit, .subtit {
+	padding-bottom: 5px;
+}
+
+.main {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.tit {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.subtit {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.mini {
+	font-size: 9px;
+	color: #808080;
+}
+
+.userName {
+	font-family: verdana;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.message {
+	font-size: 12px;
+	color: #be314e;
+}
+
+a {
+	font-family: verdana;
+	font-size: 11px;
+	text-decoration: none;
+	color: #be314e;
+}
+
+a:hover {
+	text-decoration: none;
+	color: navy;
+}
+
+/* --- IMAGES --- */
+
+div .img {
+	float: left;
+	padding: 3px 5px 50px 3px;
+}
+
+/* --- HEADER --- */
+
+#header {
+	font-family: candara;
+	font-size: 32px;
+	font-weight: bold;
+	color: navy;
+	height: 70px;
+}
+
+#header img {
+	border: 0;
+}
+
+/* --- MENU --- */
+
+#menu {
+	height: 30px;
+	background-image: url(images/menu.gif);
+	background-repeat: repeat x;
+}
+
+/* --- CONTENT --- */
+
+#content {
+	font-family: verdana;
+	font-size: 12px;
+	text-align: left;
+	width: 558px;
+	padding: 2px 2px 3px 6px;
+	min-height: 420px;
+	max-height: 420px;
+	overflow: auto;
+	float: left;
+}
+
+/* --- PALLETE --- */
+
+#pallete {
+	background-image: url(images/pallete.gif);
+	background-repeat: repeat-y;
+	width: 330px;
+	float: right;
+	padding: 2px 0px 1px 1px;
+}
+
+/* --- FOOTER --- */
+
+#footer {
+	background-image: url(images/footer.gif);
+	height: 36px;
+	clear: both;
+	font-family: verdana;
+	font-size: 10px;
+	text-align: center;
+}

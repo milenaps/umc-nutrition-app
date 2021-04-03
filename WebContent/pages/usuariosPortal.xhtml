@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tPortal.xhtml">
+	<ui:define name="title"> :: Cadastro de usuários</ui:define>
+	<ui:define name="content">
+		<p class="tit">Cadastro de usuários</p>
+		<form jsfc="h:form" id="acessarAplicacao">
+			<ui:include src="crudUsuarios.xhtml" />
+		</form>
+	</ui:define>
+	<ui:define name="mktg">
+		<ui:include src="mktgNews.xhtml" />
+	</ui:define>
+</ui:composition>

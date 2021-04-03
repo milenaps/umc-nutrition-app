@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="tGeral.xhtml">
+	<ui:define name="title"> :: Resultado de análise de alimentação</ui:define>
+	<ui:define name="content">
+		<p class="tit">Detalhes do resultado de análise de alimentação</p>
+		<form jsfc="h:form" id="detalheResultAnalise">
+			<h:panelGrid columns="2">
+				<label for="id">Data inicial:</label>
+				<h:outputText value="#{avaliacaoBean.avaliacao.resultadoAnalise.dataInicial}"/>
+				<label for="id">Data inicial:</label>
+				<h:outputText value="#{avaliacaoBean.avaliacao.resultadoAnalise.dataInicial}"/>
+				<label for="id">Informativo:</label>
+				<h:outputText value="#{avaliacaoBean.avaliacao.resultadoAnalise.informativo}"/>
+				<label for="id">Posição no ranking de 1 a 5:</label>
+				<h:outputText value="#{avaliacaoBean.avaliacao.resultadoAnalise.posicaoRanking}"/>
+			</h:panelGrid>
+			<p><b><a href="javascript:history.back()" value="» Voltar"/></b></p>
+		</form>
+	</ui:define>
+</ui:composition>

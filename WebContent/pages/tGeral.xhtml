@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:r="http://richfaces.org/rich">
+	
+	<f:loadBundle basename="com.nutri.resources.bundle.messages" var="msgs"/>
+	<head>
+		<title>NutriBem<ui:insert name="title"/></title>
+		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
+		<meta name="Description" content="Portal NutriBem" />
+		<meta name="Abstract" content="Portal NutriBem" />
+		<style type="text/css">
+			@import url("templates/geral/styles.css");
+			@import url("css/calendar.css");
+			@import url("css/menu.css");
+		</style>
+		<script type="text/javascript" src="javascript/scripts.js" />
+	</head>
+	<body>
+		<div align="center">
+		<div id="escope">
+			<div id="header"><a href="index.jsf"><img src="templates/geral/images/header.jpg" title="Voltar para o site"/></a></div>
+			<div id="menu">
+				<ui:insert name="menu">
+					<h:form>
+						<r:toolBar>
+							<r:dropDownMenu rendered="#{(usuarioBean.roles[0] || usuarioBean.roles[1]) and !usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao" style="padding:0;">Home</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu>
+								<f:facet name="label">Gerenciamento</f:facet>
+								<r:menuItem action="crudUsuarios">Meu cadastro</r:menuItem>
+								<r:menuItem action="montarCardapios" rendered="#{usuarioBean.roles[1] || usuarioBean.roles[2]}">Cardápios</r:menuItem>
+								<r:menuItem action="repositorio" rendered="#{usuarioBean.roles[2]}">Repositório</r:menuItem>
+								<r:menuItem action="crudAlimentos" rendered="#{usuarioBean.roles[1]}">Alimentos</r:menuItem>
+								<r:menuItem action="crudAtividades" rendered="#{usuarioBean.roles[1]}">Atividades</r:menuItem>
+								<r:menuItem action="crudPatologias" rendered="#{usuarioBean.roles[1]}">Patologias</r:menuItem>
+								<r:menuItem action="manageUsuarios" rendered="#{usuarioBean.roles[0]}">Usuários</r:menuItem>
+							</r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao">Avaliação nutricional</r:menuItem></f:facet></r:dropDownMenu>
+						</r:toolBar>
+					</h:form>
+				</ui:insert>
+			</div>
+			<div id="content">
+				<p><i><h:messages styleClass="message"/></i></p>
+				<ui:insert name="content"/>
+			</div>
+			<div id="pallete"><ui:insert name="pallete"><ui:include src="consAlimentos.xhtml"/></ui:insert></div>
+			<div id="footer"><ui:insert name="footer"><ui:include src="appInfo.xhtml" /></ui:insert></div>
+		</div>
+		</div>
+	</body>
+</html>

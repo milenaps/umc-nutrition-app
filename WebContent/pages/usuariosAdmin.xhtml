@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:r="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="tCrud.xhtml">
+	<ui:define name="title"> :: Gerenciamento de usuários</ui:define>
+	<ui:define name="content">
+		<p class="tit">Gerenciamento de usuários</p>
+		<form jsfc="h:form" id="consultarUsuarios">
+			<r:dataTable var="user" value="#{usuarioBean.all}" rows="10" frozenColCount="0">
+				<r:column>
+					<f:facet name="header"><h:outputText value="Nome" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{user.nome}" />
+				</r:column>
+				<r:column>
+					<f:facet name="header"><h:outputText value="E-mail" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{user.email}" />
+				</r:column>
+				<r:column>
+					<f:facet name="header"><h:outputText value="Login" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{user.login.login}" />
+				</r:column>
+				<r:column>
+					<input type="button" jsfc="h:commandButton" value="Excluir">
+						<f:param name="idUser" value="#{user.id}" />
+					</input>
+				</r:column>
+			</r:dataTable>
+		</form>
+		<form id="aprovarNutricionistas" jsfc="h:form" rendered="#{!nutricionistaBean.listaVazia}">
+			<br /><br /><p class="subtit">
+				Há nutricionistas pendentes de aprovação!<br />
+				<a href="#" jsfc="h:commandLink" action="avaliarNutricionistas" value="» Visualizar lista" />
+			</p>
+		</form>
+	</ui:define>
+</ui:composition>

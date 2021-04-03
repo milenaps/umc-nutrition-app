@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:r="http://richfaces.org/rich"
+	template="tGeral.xhtml">
+	<ui:define name="title"> :: Lista de alimentos</ui:define>
+	<ui:define name="content">
+		<p class="tit">Lista de alimentos</p>
+		<form jsfc="h:form" id="listaAlimentos">
+			<h:dataTable var="a" value="#{alimentoBean.alimentos}" height="200px" width="99%" rendered="#{!alimentoBean.listaVazia}">
+				<h:column>
+					<f:facet name="header"><h:outputText value="Nome" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{a.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><h:outputText value="Medida" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{a.medida.nome}" />
+				</h:column>
+				<h:column rendered="#{usuarioBean.roles[1] || usuarioBean.roles[2]}">
+					<f:facet name="header">
+						<h:panelGroup>
+							<span style="font-weight:bold">Qtde</span><br />
+							<span class="mini">(Formato: 0.00)</span>
+						</h:panelGroup>
+					</f:facet>
+					<input type="text" jsfc="h:inputText" size="7" value="#{historicoAlimentarBean.historicoAlimentar.quantidade}" />
+				</h:column>
+				<h:column rendered="#{usuarioBean.roles[2]}">
+					<f:facet name="header"><h:outputText value="Data" style="font-weight:bold" /></f:facet>
+					<r:calendar id="data" inputSize="7" datePattern="dd/MM/yyyy" firstWeekDay="0" 
+						weekDayLabelsShort="D,S,T,Q,Q,S,S" showWeeksBar="false" showFooter="false" value="#{historicoAlimentarBean.historicoAlimentar.data}" />
+				</h:column>
+				<h:column rendered="#{usuarioBean.roles[2]}">
+					<f:facet name="header"><h:outputText value="Hora" style="font-weight:bold" /></f:facet>
+					<input type="text" jsfc="h:inputText" size="7" value="#{historicoAlimentarBean.historicoAlimentar.hora}" />
+				</h:column>
+				<h:column rendered="#{!usuarioBean.roles[1] and !usuarioBean.roles[2]}">
+					<f:facet name="header"><h:outputText value="Grupo alimentar" style="font-weight:bold" /></f:facet>
+					<h:outputText value="#{a.categoria.grupoAlimentar.nome}" />
+				</h:column>
+				
+				<h:column rendered="#{usuarioBean.roles[1] || usuarioBean.roles[2]}">
+					<a href="#" jsfc="h:commandLink" value="» Add ao cardápio" idAlimento="#{a.id}" quantidade="#{historicoAlimentarBean.historicoAlimentar.quantidade}" actionListener="#{cardapioBean.atualizarCardapio}" action="montarCardapios"/>
+				</h:column>
+			</h:dataTable>
+		</form>
+	</ui:define>
+</ui:composition>

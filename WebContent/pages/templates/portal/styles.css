@@ -1,0 +1,188 @@
+/* --- GENERAL --- */
+
+body {
+	background-color: #f3f9e7;
+}
+
+hr {
+	border-color: transparent;
+	padding: 0;
+	margin: 0;
+}
+
+#escope, #header, #footer {
+	width: 898px;
+}
+
+#escope {
+	background-image: url(images/escope.jpg);
+}
+
+/* --- FONTS --- */
+
+p {
+	font-family: verdana;
+}
+
+span {
+	padding: 2px;
+}
+
+.main, .tit, .subtit {
+	padding-bottom: 5px;
+}
+
+.main {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.tit {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.subtit {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.mini {
+	font-size: 9px;
+	color: #808080;
+}
+
+.userName {
+	font-family: verdana;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.ptit {
+	color: #be314e;
+	font-weight: bold;
+}
+
+.psubtit {
+	font-weight: bold;
+	color: #f79a3b;
+}
+
+.message {
+	font-size: 12px;
+	color: #be314e;
+}
+
+a {
+	font-family: verdana;
+	font-size: 11px;
+	text-decoration: none;
+	color: #be314e;
+}
+
+a:hover {
+	text-decoration: none;
+	color: navy;
+}
+
+/* --- IMAGES --- */
+
+div .img {
+	float: left;
+	padding: 3px 5px 50px 3px;
+}
+
+/* --- HEADER --- */
+
+#header {
+	background-image: url(images/header.jpg);
+	height: 120px;
+	color: navy;
+	font-family: candara;
+	font-size: 32px;
+	font-weight: bold;
+}
+
+/* --- LEFT BAR --- */
+
+#leftBar {
+	width: 140px;
+	float: left;
+}
+
+/* --- MENU --- */
+
+#menu {
+	padding-bottom: 16px;
+}
+
+/* --- AUTENTICACAO --- */
+
+#auth {
+	font-family: verdana;
+	font-size: 10px;
+	text-align: left;
+	width: 126px;
+}
+
+#auth .tit {
+	font-size: 12px;
+	color: #be314e;
+}
+
+/* --- CONTAINER --- */
+
+#container {
+	width: 758px;
+	display: inline;
+}
+
+/* --- CONTENT --- */
+
+#content {
+	font-family: verdana;
+	font-size: 12px;
+	text-align: left;
+	width: 596px;
+	padding: 0px 0px 2px 14px;
+	min-height: 413px;
+	max-height: 413px;
+	overflow: auto;
+	float: left;
+}
+
+/* --- PALLETE --- */
+
+#mktg {
+	background-image: url(images/mktg.gif);
+	background-repeat: repeat-y;
+	padding: 0px 0px 2px 0px;
+	font-size: 10px;
+	min-height: 118px;
+	max-height: 118px;
+	width: 148px;
+	float: right;
+}
+
+#mktg .tit {
+	font-size: 12px;
+	color: #be314e;
+}
+
+#mktg a {
+	font-size: 10px;
+}
+
+/* --- FOOTER --- */
+
+#footer {
+	background-image: url(images/footer.gif);
+	height: 20px;
+	clear: both;
+	font-family: verdana;
+	font-size: 10px;
+	text-align: center;
+	padding-top: 5px;
+}

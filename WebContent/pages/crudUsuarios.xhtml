@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:r="http://richfaces.org/rich">
+	
+	<form jsfc="h:form" id="inserirUsuarios">
+		<p>Para utilizar a aplicação é necessário preencher os campos a seguir:</p>
+		<h:panelGrid cellpadding="0">
+			<h:panelGroup>
+				<h:panelGrid columns="2" cellpadding="0">
+					<label for="nome">Nome:</label>
+					<input type="text" jsfc="h:inputText" value="#{usuarioBean.usuario.nome}" />
+					<label for="email">E-mail:</label>
+					<input type="text" jsfc="h:inputText" value="#{usuarioBean.usuario.email}" />
+					<label for="login">Login:</label>
+					<input type="text" jsfc="h:inputText" value="#{usuarioBean.usuario.login.login}" />
+					<label for="senha">Senha:</label>
+					<input type="password" jsfc="h:inputSecret" value="#{usuarioBean.usuario.login.senha}" />
+					<label for="confSenha">Confirmar senha:</label>
+					<input type="password" jsfc="h:inputSecret" />
+				</h:panelGrid>
+			</h:panelGroup>
+			<h:panelGroup>
+				<h:panelGrid columns="2" cellpadding="0">
+					<p><b>Tipo de acesso:</b></p>
+					<h:selectManyCheckbox
+						binding="#{usuarioBean.tipoAcessoBinding}"
+						valueChangeListener="#{usuarioBean.updateReqFields}"
+						onchange="submit()">
+						<f:selectItem itemValue="#{usuarioBean.perfilPaciente}" itemLabel="Paciente" />
+						<f:selectItem itemValue="#{usuarioBean.perfilNutricionista}" itemLabel="Nutricionista" />
+					</h:selectManyCheckbox>
+				</h:panelGrid>
+			</h:panelGroup>
+			<f:verbatim><hr /><br /></f:verbatim>
+			
+			<h:panelGroup>
+				<span class="subtit">Paciente</span>
+				<h:panelGrid columns="2" cellpadding="0">
+					<label for="crn">Sexo:</label>
+					<h:selectOneRadio id="sexo" value="#{pacienteBean.paciente.sexo}"
+						binding="#{usuarioBean.sexoBinding}">
+						<f:selectItem itemLabel="M" itemValue="0" />
+						<f:selectItem itemLabel="F" itemValue="1" />
+					</h:selectOneRadio>
+					<label for="dataNascto">Data Nascto:</label>
+					<r:calendar id="dataNascto" inputSize="8" datePattern="dd/MM/yyyy"
+						firstWeekDay="0" weekDayLabelsShort="D,S,T,Q,Q,S,S"
+						showWeeksBar="false" showFooter="false"
+						value="#{pacienteBean.paciente.dataNascto}"
+						binding="#{usuarioBean.nasctoBinding}" />
+					<label for="peso">Peso:</label>
+					<h:inputText id="peso" value="#{pacienteBean.paciente.peso}" size="8">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:inputText>
+					<label for="altura">Altura:</label>
+					<h:inputText id="altura" value="#{pacienteBean.paciente.altura}" size="8">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:inputText>
+				</h:panelGrid>
+				<br /><p><b>Selecione a seguir o seu tipo de alimentação:</b></p>
+				<h:selectOneRadio name="tipoAlimentacao"
+					value="#{usuarioBean.tipoAlimentacao}"
+					binding="#{usuarioBean.tipoAlimBinding}">
+					<f:selectItem itemValue="1"
+						itemLabel="Consumo todos os tipos de alimentos sem exceções" />
+					<f:selectItem itemValue="2"
+						itemLabel="Não consumo carne animal, mas consumo leite e ovos" />
+					<f:selectItem itemValue="3"
+						itemLabel="Não consumo alimentos derivados de animais" />
+				</h:selectOneRadio>
+				<br /><p><b>Selecione abaixo os itens que se enquadram no seu perfil:</b></p>
+				<h:selectOneRadio name="tracadoPerfil"
+					value="#{usuarioBean.tracadoPerfil}"
+					binding="#{usuarioBean.tipoPerfilBinding}">
+					<f:selectItem itemValue="1"
+						itemLabel="No momento não estou estudando e nem trabalhando" />
+					<f:selectItem itemValue="2"
+						itemLabel="Apenas estudo e levo uma vida tranqüila" />
+					<f:selectItem itemValue="3"
+						itemLabel="Apenas trabalho e levo uma vida tranqüila" />
+					<f:selectItem itemValue="4"
+						itemLabel="Estudo e trabalho, mas levo uma vida tranqüila" />
+					<f:selectItem itemValue="5"
+						itemLabel="Apenas estudo, mas levo uma vida agitada" />
+					<f:selectItem itemValue="6"
+						itemLabel="Apenas trabalho, mas levo uma vida agitada" />
+					<f:selectItem itemValue="7"
+						itemLabel="Estudo e trabalho e levo uma vida agitada" />
+				</h:selectOneRadio>
+				<br /><p><b>Prática de atividades físicas:</b></p>
+				<h:dataTable var="a" value="#{atividadeBean.all}"
+					binding="#{usuarioBean.atividadesBinding}">
+					<h:column>
+						<h:outputText value="#{a.nome}" />
+					</h:column>
+					<h:column>
+						<select jsfc="h:selectOneRadio" value="#{a.frequencia.id}">
+							<f:convertNumber />
+				  			<f:selectItems value="#{pacienteBean.allFrequencias}" />
+						</select>
+					</h:column>
+					<h:column>
+						<f:facet name="header"></f:facet>
+						<input type="button" jsfc="h:commandButton" value="Inserir" action="#{pacienteBean.inserirAtividade}">
+							<f:param name="idAtividade" value="#{a.id}" />
+						</input>
+					</h:column>
+				</h:dataTable>
+				<h:panelGrid rendered="#{pacienteBean.paciente.atividades != null and !pacienteBean.noActivities}" cellpadding="0">
+					<br /><p>Atividades adicionadas:</p>
+					<h:dataTable var="a" value="#{pacienteBean.paciente.atividades}">
+						<h:column>
+							<h:outputText value="#{a.nome}" />
+						</h:column>
+						<h:column>
+							<select jsfc="h:selectOneRadio" value="#{a.frequencia.id}">
+								<f:convertNumber />
+					  			<f:selectItems value="#{pacienteBean.allFrequencias}" />
+							</select>
+						</h:column>
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<a jsfc="h:commandLink" href="#" value="Alterar" action="#{pacienteBean.inserirAtividade}">
+								<f:param name="idAtividade" value="#{a.id}" />
+							</a>
+						</h:column>
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<a jsfc="h:commandLink" href="#" value="Remover" action="#{pacienteBean.inserirAtividade}">
+								<f:param name="idAtividade" value="#{a.id}" />
+							</a>
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</h:panelGroup>
+			<f:verbatim><hr /><br /></f:verbatim>
+			
+			<h:panelGroup>
+				<p class="subtit">Nutricionista</p>
+				<h:panelGrid columns="2" cellpadding="0">
+					<label for="crn">CRN:</label>
+					<input type="text" id="crn" jsfc="h:inputText"
+						value="#{nutricionistaBean.nutricionista.crn}"
+						binding="#{usuarioBean.crnBinding}" />
+					<label for="enderecos">Endereços:</label>
+					<h:panelGroup>
+	
+						<input type="text" jsfc="h:inputText"
+							value="#{usuarioBean.usuario.enderecos}" />
+					</h:panelGroup>
+					<label for="telefones">Telefones:</label>
+					<h:panelGroup>
+	
+						<input type="text" jsfc="h:inputText"
+							value="#{usuarioBean.usuario.telefones}" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</h:panelGroup>
+		</h:panelGrid>
+		<div style="float:right;">
+			<input type="submit" jsfc="h:commandButton" value="Salvar" action="#{usuarioBean.save}" />
+		</div>
+		<f:verbatim><br /></f:verbatim>
+	</form>
+</ui:composition>

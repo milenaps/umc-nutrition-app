@@ -1,0 +1,81 @@
+/* --Calendar-- */
+
+.rich-calendar {
+	border-color: #ffb993;
+	font-family: verdana;
+	font-size: 9px;
+}
+
+.rich-calendar-header {
+	background-image: url(../images/calendar/header.gif);
+	border-color: #ffb993;
+}
+
+.rich-calendar-month {
+	font-weight: bold;
+}
+
+.rich-calendar-tool {
+	background-image: url(../images/calendar/header.gif);
+}
+
+.rich-calendar-days {
+	background-color: white;
+	border-color: #ffb993;
+	font-weight: bold;
+}
+
+.rich-calendar-cell {
+	background-image: url(../images/calendar/cells.gif);
+	border-color: #ffb993;
+}
+
+.rich-calendar-exterior {
+	background-color: #fff2e6;
+	border-color: #ffb993;
+}
+
+.rich-calendar-today {
+	background-image: url(../images/calendar/days.gif);
+}
+
+.rich-calendar-holly {
+	background-image: url(../images/calendar/days.gif);
+}
+
+.rich-calendar-select {
+	background-image: url(../images/calendar/days.gif);
+	font-weight: bold;
+}
+
+.rich-calendar-hover {
+	background-image: url(../images/calendar/header.gif);
+}
+
+.rich-calendar-date-layout {
+	background-color: white;
+	border-color: #ffb993;
+}
+
+.rich-calendar-date-layout-split {
+	border-color: #ffb993;
+}
+
+.rich-calendar-editor-btn-over {
+	border-color: #ffb993;
+	background-image: url(../images/calendar/days.gif);
+}
+
+.rich-calendar-editor-btn-selected {
+	border-color: #ffb993;
+	background-image: url(../images/calendar/days.gif);
+}
+
+.rich-calendar-editor-layout-shadow {
+	background-image: url(../images/calendar/days.gif);
+}
+
+.rich-calendar-date {
+	background-color: white;
+	border-color: #ffb993;
+}
