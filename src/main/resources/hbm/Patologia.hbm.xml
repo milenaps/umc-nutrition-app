@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="main.java.com.nutri.model.Patologia" table="patologia">
+		<id name="id" column="id" unsaved-value="0">
+			<generator class="increment" />
+		</id>
+		<property name="nome" column="nome" not-null="true" unique="true" />
+		<property name="descricao" column="descricao" not-null="true" />
+		<set name="restrAlimentos" table="alimento_patologia">
+			<key column="patologia" not-null="true" />
+			<many-to-many column="alimento" class="main.java.com.nutri.model.Alimento" />
+		</set>
+		<set name="restrCategorias" table="categoria_patologia">
+			<key column="patologia" not-null="true" />
+			<many-to-many column="categoria" class="main.java.com.nutri.model.Categoria" />
+		</set>
+		<set name="restrGrupos" table="grupo_patologia">
+			<key column="patologia" not-null="true" />
+			<many-to-many column="grupo" class="main.java.com.nutri.model.GrupoAlimentar" />
+		</set>
+		<set name="restrNutrientes" table="nutriente_patologia">
+			<key column="patologia" not-null="true" />
+			<many-to-many column="nutriente" class="main.java.com.nutri.model.Nutriente" />
+		</set>
+	</class>
+</hibernate-mapping>

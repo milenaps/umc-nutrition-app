@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="main.java.com.nutri.model.Composicao" table="alimento_nutriente">
+		<id name="id" column="id" unsaved-value="0">
+			<generator class="increment" />
+		</id>
+		<many-to-one column="nutriente" name="nutriente"
+			class="main.java.com.nutri.model.Nutriente" />
+		<property name="quantidade" column="quantidade" type="java.lang.Double"
+			not-null="true" />
+	</class>
+</hibernate-mapping>
