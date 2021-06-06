@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="main.java.com.nutri.model.ResultadoAnalise" table="resultadoanalise">
+	<class name="com.nutri.java.model.ResultadoAnalise" table="resultadoanalise">
 		<id name="id" column="id" unsaved-value="0">
 			<generator class="increment" />
 		</id>
 		<many-to-one name="paciente" column="paciente"
-			foreign-key="paciente" class="main.java.com.nutri.model.Paciente" />
+			foreign-key="paciente" class="com.nutri.java.model.Paciente" />
 		<property name="dataInicial" column="dataInicial" not-null="true" type="java.util.Date" />
 		<property name="dataFinal" column="dataFinal" not-null="true" type="java.util.Date" />
 		<property name="posicaoRanking" column="posicaoRanking"

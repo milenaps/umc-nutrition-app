@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:h="http://java.sun.com/jsf/html">
 	
-	<f:loadBundle basename="main.resources.bundle.messages" var="msgs"/>
+	<f:loadBundle basename="bundle.messages" var="msgs"/>
 	<head>
 		<title>NutriBem<ui:insert name="title"/></title>
 		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
@@ -26,7 +26,7 @@
 				<div id="auth">
 					<form jsfc="h:form" id="autenticacao">
 						<h:panelGroup rendered="#{usuarioBean.sessao == null}">
-							<span class="tit">Autenticação</span><br />
+							<span class="tit">Autenticaï¿½ï¿½o</span><br />
 							<h:panelGrid columns="2">
 								<span>Login</span> <input type="text" jsfc="h:inputText" id="user" size="6" maxlength="10" value="#{usuarioBean.login}" required="true" />
 								<span>Senha</span> <input type="password" jsfc="h:inputSecret" id="passwd" size="6" maxlength="10" value="#{usuarioBean.senha}" required="true" />
@@ -35,10 +35,10 @@
 						</h:panelGroup>
 						<h:panelGroup rendered="#{usuarioBean.sessao != null}">
 							<p>
-								Usuário logado:<br />
+								Usuï¿½rio logado:<br />
 								<h:outputText styleClass="userName" value="#{usuarioBean.usuarioLogado.nome}" /><br /><hr />
-								<a href="#" jsfc="h:commandLink" value="» Aplicação" action="aplicacao" /><br /><hr />
-								<a href="#" jsfc="h:commandLink" value="» #{msgs.logoff}" action="#{usuarioBean.efetuarLogoff}" />
+								<a href="#" jsfc="h:commandLink" value="ï¿½ Aplicaï¿½ï¿½o" action="aplicacao" /><br /><hr />
+								<a href="#" jsfc="h:commandLink" value="ï¿½ #{msgs.logoff}" action="#{usuarioBean.efetuarLogoff}" />
 							</p>
 						</h:panelGroup>
 					</form>

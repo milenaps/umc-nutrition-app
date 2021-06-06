@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="main.java.com.nutri.model.Paciente" table="paciente">
+	<class name="com.nutri.java.model.Paciente" table="paciente">
 		<id name="id" column="id" unsaved-value="0">
 			<generator class="increment" />
 		</id>
@@ -13,18 +13,18 @@
 			type="java.lang.Double" />
 		<property name="sexo" column="sexo" not-null="true" />
 		<many-to-one name="perfil" column="perfil"
-					 class="main.java.com.nutri.model.PerfilPaciente" not-null="true" />
+					 class="com.nutri.java.model.PerfilPaciente" not-null="true" />
 		<bag name="historicosAlimentares" table="historicoalimentar">
 			<key column="paciente" not-null="true" />
-			<one-to-many class="main.java.com.nutri.model.HistoricoAlimentar" />
+			<one-to-many class="com.nutri.java.model.HistoricoAlimentar" />
 		</bag>
 		<bag name="atividades" table="paciente_atividade">
 			<key column="paciente" not-null="true" />
-			<many-to-many column="atividade" class="main.java.com.nutri.model.Atividade" />
+			<many-to-many column="atividade" class="com.nutri.java.model.Atividade" />
 		</bag>
 		<bag name="patologias" table="paciente_patologia">
 			<key column="paciente" not-null="true" />
-			<many-to-many column="patologia" class="main.java.com.nutri.model.Patologia" />
+			<many-to-many column="patologia" class="com.nutri.java.model.Patologia" />
 		</bag>
 	</class>
 </hibernate-mapping>

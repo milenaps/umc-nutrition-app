@@ -30,7 +30,7 @@ public class JdbcDAOImpl implements IJdbcDAO {
 	public Connection getConnection() throws Exception {
 		Class.forName("org.postgresql.Driver").newInstance();
 		con = DriverManager
-				.getConnection("jdbc:postgresql://127.0.0.1:5432/nutri?user=postgres&password=aula");
+				.getConnection("jdbc:postgresql://postgres:5432/nutri?user=postgres&password=aula");
 		return con;
 	}
 

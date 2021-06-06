@@ -6,7 +6,7 @@
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-		<message-bundle>main.resources.bundle.messages</message-bundle>
+		<message-bundle>bundle.messages</message-bundle>
 	</application>
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
@@ -95,6 +95,6 @@
 	<!-- Conversores -->
 	<converter>
 		<converter-id>grupoConverter</converter-id>
-		<converter-class>main.java.com.nutri.bean.converters.GrupoConverter</converter-class>
+		<converter-class>com.nutri.java.bean.converters.GrupoConverter</converter-class>
 	</converter>
 </faces-config>

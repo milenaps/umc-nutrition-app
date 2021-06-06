@@ -6,7 +6,7 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:r="http://richfaces.org/rich">
 	
-	<f:loadBundle basename="main.resources.bundle.messages" var="msgs"/>
+	<f:loadBundle basename="bundle.messages" var="msgs"/>
 	<head>
 		<title>NutriBem<ui:insert name="title"/></title>
 		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
@@ -29,15 +29,15 @@
 						<r:toolBar>
 							<r:dropDownMenu rendered="#{(usuarioBean.roles[0] || usuarioBean.roles[1]) and !usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao" style="padding:0;">Home</r:menuItem></f:facet></r:dropDownMenu>
 							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="crudUsuarios" style="padding:0;">Meu cadastro</r:menuItem></f:facet></r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="manageUsuarios" style="padding:0;">Gerenciar usuários</r:menuItem></f:facet></r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="montarCardapios" style="padding:0;">Cardápios</r:menuItem></f:facet></r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao" style="padding:0;">Avaliação nutricional</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="manageUsuarios" style="padding:0;">Gerenciar usuï¿½rios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="montarCardapios" style="padding:0;">Cardï¿½pios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao" style="padding:0;">Avaliaï¿½ï¿½o nutricional</r:menuItem></f:facet></r:dropDownMenu>
 						</r:toolBar>
 						<r:toolBar>
 							<r:dropDownMenu rendered="#{(usuarioBean.roles[0] and !(usuarioBean.roles[1] || usuarioBean.roles[2])) || (!usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2]))}"><f:facet name="label"><r:menuItem action="crudUsuarios" style="padding:0;">Meu cadastro</r:menuItem></f:facet></r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and !(usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="manageUsuarios" style="padding:0;">Gerenciar usuários</r:menuItem></f:facet></r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="montarCardapios" style="padding:0;">Cardápios</r:menuItem></f:facet></r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="repositorio" style="padding:0;">Repositório</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and !(usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="manageUsuarios" style="padding:0;">Gerenciar usuï¿½rios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="montarCardapios" style="padding:0;">Cardï¿½pios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="repositorio" style="padding:0;">Repositï¿½rio</r:menuItem></f:facet></r:dropDownMenu>
 							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudAlimentos" style="padding:0;">Alimentos</r:menuItem></f:facet></r:dropDownMenu>
 							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudCategorias" style="padding:0;">Categorias</r:menuItem></f:facet></r:dropDownMenu>
 							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudGrupos" style="padding:0;">Grupos alimentares</r:menuItem></f:facet></r:dropDownMenu>

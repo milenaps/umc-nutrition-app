@@ -6,7 +6,7 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:r="http://richfaces.org/rich">
 	
-	<f:loadBundle basename="main.resources.bundle.messages" var="msgs"/>
+	<f:loadBundle basename="bundle.messages" var="msgs"/>
 	<head>
 		<title>NutriBem<ui:insert name="title"/></title>
 		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
@@ -31,14 +31,14 @@
 							<r:dropDownMenu>
 								<f:facet name="label">Gerenciamento</f:facet>
 								<r:menuItem action="crudUsuarios">Meu cadastro</r:menuItem>
-								<r:menuItem action="montarCardapios" rendered="#{usuarioBean.roles[1] || usuarioBean.roles[2]}">Cardápios</r:menuItem>
-								<r:menuItem action="repositorio" rendered="#{usuarioBean.roles[2]}">Repositório</r:menuItem>
+								<r:menuItem action="montarCardapios" rendered="#{usuarioBean.roles[1] || usuarioBean.roles[2]}">Cardï¿½pios</r:menuItem>
+								<r:menuItem action="repositorio" rendered="#{usuarioBean.roles[2]}">Repositï¿½rio</r:menuItem>
 								<r:menuItem action="crudAlimentos" rendered="#{usuarioBean.roles[1]}">Alimentos</r:menuItem>
 								<r:menuItem action="crudAtividades" rendered="#{usuarioBean.roles[1]}">Atividades</r:menuItem>
 								<r:menuItem action="crudPatologias" rendered="#{usuarioBean.roles[1]}">Patologias</r:menuItem>
-								<r:menuItem action="manageUsuarios" rendered="#{usuarioBean.roles[0]}">Usuários</r:menuItem>
+								<r:menuItem action="manageUsuarios" rendered="#{usuarioBean.roles[0]}">Usuï¿½rios</r:menuItem>
 							</r:dropDownMenu>
-							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao">Avaliação nutricional</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao">Avaliaï¿½ï¿½o nutricional</r:menuItem></f:facet></r:dropDownMenu>
 						</r:toolBar>
 					</h:form>
 				</ui:insert>
