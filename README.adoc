@@ -1,8 +1,61 @@
-= Final project for Bs in Information Systems at UMC
+= BS Information Systems' Final Project at UMC
 
-Stack:
+== Overview
+Monolithic application meant to provide nutrition information helping users in balancing their diets with the follow up of real nutritionists, aiming better life quality.
 
-- JavaEE with JSF 2, RichFaces and JPA/Hibernate
-- PostgreSQL
+== Stack
+- JAVA + Spring
+- JSF 1.2 + RichFaces
+- PostgreSQL DB
 
-Obs: The steps for running will be shortly added
+== Requisites
+- JDK8 or higher
+- Maven
+- Docker
+
+== How to test locally
+
+=== Build the executable
+In your favorite terminal, at the project root folder execute the command below to build and generate the war package:
+[source, bash]
+--
+mvn clean package
+--
+
+=== Start the database
+Still at the project root folder, run the following to download the database image and start it via Docker:
+[source, bash]
+--
+docker-compose -f docker/docker-compose-postgres up
+--
+
+=== Database initial setup
+The first time you start Postgresql DB, only the schema is created automatically, so that it's required to create tables and indexes, as well as populate them with initial data for the application to work as desired in the next steps.
+
+==== DB Connection
+Connect to the database with the following credentials on a SQL client of choice, for instance DBeaver or Squirrel, or even via command line.
+
+* Host: localhost
+* Port: 5432
+* User: postgres
+* Password: aula
+
+==== DDL
+Load the script located at `help/scripts/ddl.sql` to generate tables and another necessary resources.
+
+==== DML
+Load initial data via contents from the script `help/scripts/initial_data.sql`.
+
+=== Start the application server
+Now it's time to start Payara to deploy the war generated at the _build_ step.
+[source, bash]
+--
+docker-compose -f docker/docker-compose-payara up
+--
+
+=== Validate the application
+In your favorite browser verify that you can access the application at http://localhost:8080/nutribem-v1.
+
+Expected result:
+
+image:help/welcome.png
