@@ -58,4 +58,4 @@ In your favorite browser verify that you can access the application at http://lo
 
 Expected result:
 
-image:help/welcome.png
+image::help/welcome.png[]
