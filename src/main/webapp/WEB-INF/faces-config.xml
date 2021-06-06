@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<message-bundle>bundle.messages</message-bundle>
+	</application>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>portal</from-outcome>
+			<to-view-id>/pages/index.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>aplicacao</from-outcome>
+			<to-view-id>/pages/main.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudUsuarios</from-outcome>
+			<to-view-id>/pages/usuariosAplicacao.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageUsuarios</from-outcome>
+			<to-view-id>/pages/usuariosAdmin.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudAlimentos</from-outcome>
+			<to-view-id>/pages/crudAlimentos.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudCategorias</from-outcome>
+			<to-view-id>/pages/crudCategorias.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudGrupos</from-outcome>
+			<to-view-id>/pages/crudGrupos.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudNutrientes</from-outcome>
+			<to-view-id>/pages/crudNutrientes.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudAtividades</from-outcome>
+			<to-view-id>/pages/crudAtividades.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>crudPatologias</from-outcome>
+			<to-view-id>/pages/crudPatologias.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaAlimentos</from-outcome>
+			<to-view-id>/pages/listaAlimentos.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaCategorias</from-outcome>
+			<to-view-id>/pages/listaCategorias.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listaResultados</from-outcome>
+			<to-view-id>/pages/listaResultsAnalise.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>detalhesDeResultado</from-outcome>
+			<to-view-id>/pages/detalhesResultAnalise.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>avaliarNutricionistas</from-outcome>
+			<to-view-id>/pages/listaAprovacao.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>montarCardapios</from-outcome>
+			<to-view-id>/pages/montarCardapios.jsf</to-view-id>
+		</navigation-case>
+		
+		<!-- Navegacao de testes de resultado -->
+		<navigation-case>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/pages/resultSucesso.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>fracasso</from-outcome>
+			<to-view-id>/pages/resultFracasso.jsf</to-view-id>
+		</navigation-case>
+		
+		<!-- Navegacao de testes de resultado -->
+		<navigation-case>
+			<from-outcome>exception</from-outcome>
+			<to-view-id>/exception.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- Conversores -->
+	<converter>
+		<converter-id>grupoConverter</converter-id>
+		<converter-class>com.nutri.java.bean.converters.GrupoConverter</converter-class>
+	</converter>
+</faces-config>

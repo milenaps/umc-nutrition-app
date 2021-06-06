@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:r="http://richfaces.org/rich">
+	
+	<f:loadBundle basename="bundle.messages" var="msgs"/>
+	<head>
+		<title>NutriBem<ui:insert name="title"/></title>
+		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
+		<meta name="Description" content="Portal NutriBem" />
+		<meta name="Abstract" content="Portal NutriBem" />
+		<style type="text/css">
+			@import url("templates/crud/styles.css");
+			@import url("css/calendar.css");
+			@import url("css/menu.css");
+		</style>
+		<script type="text/javascript" src="javascript/scripts.js" />
+	</head>
+	<body>
+		<div align="center">
+		<div id="escope">
+			<div id="header"><a href="index.jsf"><img src="templates/geral/images/header.jpg" title="Voltar para o site"/></a></div>
+			<div id="menu">
+				<ui:insert name="menu">
+					<h:form>
+						<r:toolBar>
+							<r:dropDownMenu rendered="#{(usuarioBean.roles[0] || usuarioBean.roles[1]) and !usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao" style="padding:0;">Home</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="crudUsuarios" style="padding:0;">Meu cadastro</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="manageUsuarios" style="padding:0;">Gerenciar usu�rios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="montarCardapios" style="padding:0;">Card�pios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="aplicacao" style="padding:0;">Avalia��o nutricional</r:menuItem></f:facet></r:dropDownMenu>
+						</r:toolBar>
+						<r:toolBar>
+							<r:dropDownMenu rendered="#{(usuarioBean.roles[0] and !(usuarioBean.roles[1] || usuarioBean.roles[2])) || (!usuarioBean.roles[0] and (usuarioBean.roles[1] || usuarioBean.roles[2]))}"><f:facet name="label"><r:menuItem action="crudUsuarios" style="padding:0;">Meu cadastro</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[0] and !(usuarioBean.roles[1] || usuarioBean.roles[2])}"><f:facet name="label"><r:menuItem action="manageUsuarios" style="padding:0;">Gerenciar usu�rios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="montarCardapios" style="padding:0;">Card�pios</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[2]}"><f:facet name="label"><r:menuItem action="repositorio" style="padding:0;">Reposit�rio</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudAlimentos" style="padding:0;">Alimentos</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudCategorias" style="padding:0;">Categorias</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudGrupos" style="padding:0;">Grupos alimentares</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudNutrientes" style="padding:0;">Nutrientes</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudAtividades" style="padding:0;">Atividades</r:menuItem></f:facet></r:dropDownMenu>
+							<r:dropDownMenu rendered="#{usuarioBean.roles[1]}"><f:facet name="label"><r:menuItem action="crudPatologias" style="padding:0;">Patologias</r:menuItem></f:facet></r:dropDownMenu>
+						</r:toolBar>
+					</h:form>
+				</ui:insert>
+			</div>
+			<div id="content">
+				<p><i><h:messages styleClass="message"/></i></p>
+				<ui:insert name="content"/>
+			</div>
+			<div id="footer"><ui:insert name="footer"><ui:include src="appInfo.xhtml" /></ui:insert></div>
+		</div>
+		</div>
+	</body>
+</html>

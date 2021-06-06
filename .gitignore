@@ -2,6 +2,5 @@
 /.project
 /.settings
 /.idea
-/.metadata
-**/classes/*
+/target
 *.iml

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:r="http://richfaces.org/rich">
+	
+	<f:loadBundle basename="bundle.messages" var="msgs"/>
+	<head>
+		<title>NutriBem<ui:insert name="title"/></title>
+		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
+		<meta name="Description" content="Portal NutriBem" />
+		<meta name="Abstract" content="Portal NutriBem" />
+		<style type="text/css">
+			@import url("templates/crud/styles.css");
+			@import url("css/calendar.css");
+		</style>
+		<script type="text/javascript" src="javascript/scripts.js" />
+	</head>
+	<body>
+		<div align="center">
+		<div id="escope">
+			<div id="header"><a href="index.jsf"><img src="templates/geral/images/header.jpg" title="Voltar para o site"/></a></div>
+			<div id="content">
+				<p><i><h:messages styleClass="message"/></i></p>
+				<ui:insert name="content"/>
+			</div>
+			<div id="footer"><ui:insert name="footer"><ui:include src="appInfo.xhtml" /></ui:insert></div>
+		</div>
+		</div>
+	</body>
+</html>

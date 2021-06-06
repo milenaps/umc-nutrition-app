@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:r="http://richfaces.org/rich">
+	
+	<f:loadBundle basename="bundle.messages" var="msgs"/>
+	<head>
+		<title>NutriBem</title>
+		<meta name="Keywords" content="nutricao, aplicacao, web, aplicacao web, nutribem" />
+		<meta name="Description" content="Portal NutriBem" />
+		<meta name="Abstract" content="Portal NutriBem" />
+		<style type="text/css">
+			@import url("pages/templates/portal/styles.css");
+		</style>
+	</head>
+	<body>
+		<div align="center">
+		<div id="escope">
+			<div id="header"></div>
+			<div id="content">
+				<p class="subtit">Exce��o na aplica��o</p><br /><br />
+				<h:panelGrid columns="2">
+					<h:outputText style="font-weight:bold" value="C�digo:" rendered="#{exceptionBean.exception.code != null}"/>
+					<h:outputText value="#{exceptionBean.exception.code}" rendered="#{exceptionBean.exception.code != null}"/>
+					<h:outputText style="font-weight:bold" value="Descri��o:" rendered="#{exceptionBean.exception.description != null}"/>
+					<h:outputText value="#{exceptionBean.exception.description}" rendered="#{exceptionBean.exception.description != null}"/>
+					<h:outputText style="font-weight:bold" value="Detalhes:" rendered="#{exceptionBean.exception.details != null}"/>
+					<h:outputText value="#{exceptionBean.exception.details}" rendered="#{exceptionBean.exception.details != null}"/>
+					<h:outputText style="font-weight:bold" value="Causa:" rendered="#{exceptionBean.exception.cause != null}"/>
+					<h:outputText value="#{exceptionBean.exception.cause}" rendered="#{exceptionBean.exception.cause != null}"/>
+				</h:panelGrid><br />
+				<p><b><a href="javascript:history.back()">� Voltar</a></b></p>
+			</div>
+			<div id="footer"></div>
+		</div>
+		</div>
+	</body>
+</html>
